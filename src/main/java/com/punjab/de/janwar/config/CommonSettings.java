@@ -1,4 +1,4 @@
-package com.punjaab.de.jaanwar.config;
+package com.punjab.de.janwar.config;
 
 import lombok.Getter;
 import lombok.Setter;
