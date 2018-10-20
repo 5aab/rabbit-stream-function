@@ -29,6 +29,7 @@ public class RabbitPro {
     private CommonSettings commonSettings;
     private RabbitGateway gateway;
 
+
     @RequestMapping("/test1")
     @ResponseBody
     String home() {
@@ -44,12 +45,14 @@ public class RabbitPro {
     @RequestMapping("/send")
     @ResponseBody
     String send() {
-        gateway.generate(getNotificationMessage());
+        for(int i=0;i<100000;i++) {
+            gateway.generate(getNotificationMessage(i));
+        }
         return "Hello Notification sent!";
     }
 
-    private NotificationMessage getNotificationMessage(){
-        return new NotificationMessage("5aab","de","janwar","india");
+    private NotificationMessage getNotificationMessage(int i){
+        return new NotificationMessage("5aab","de","janwar","india",i);
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 @AllArgsConstructor
@@ -26,6 +27,13 @@ public class RabbitConfig {
         r.setRoutingKey("work");
         r.setConnectionFactory(rabbitConnectionFactory);
         return r;
+    }
+
+    @Bean
+    public ThreadPoolTaskExecutor concurrentTaskExecutor(){
+        ThreadPoolTaskExecutor threadPoolTaskExecutor= new ThreadPoolTaskExecutor();
+        threadPoolTaskExecutor.setCorePoolSize(12);
+        return threadPoolTaskExecutor;
     }
 }
 

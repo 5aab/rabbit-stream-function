@@ -13,4 +13,5 @@ public class NotificationMessage {
     private String id;
     private String desc;
     private String address;
+    private int count;
 }

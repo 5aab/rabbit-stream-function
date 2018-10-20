@@ -29,13 +29,6 @@ public class RabbitAutoConfig {
     private RabbitServiceImpl rabbitService;
 
 
-    //@Bean
-    public IntegrationFlow toOutboundQueueFlow() {
-        return IntegrationFlows.from("integrationQueue")
-                .transform(Transformers.toJson())
-                .handle(Amqp.outboundAdapter(rabbitTemplate))
-                .get();
-    }
 
     @Bean
     Queue integrationQueue() {
@@ -45,7 +38,8 @@ public class RabbitAutoConfig {
     @Bean
     public IntegrationFlow inboundFlow() {
         return IntegrationFlows.from(
-                Amqp.inboundAdapter(connectionFactory, "integrationQueue").configureContainer(c->c.concurrentConsumers(8)))
+                Amqp.inboundAdapter(connectionFactory, "integrationQueue")
+                        .configureContainer(c->c.concurrentConsumers(12)))
                 .transform(Transformers.fromJson(NotificationMessage.class))
                 .handle(rabbitService, "printMessage")
                 .get();
