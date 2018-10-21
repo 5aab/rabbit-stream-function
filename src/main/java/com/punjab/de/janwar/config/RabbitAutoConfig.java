@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 public class RabbitAutoConfig {
 
+    @Qualifier("producerTemplate")
     private RabbitTemplate rabbitTemplate;
     private ConnectionFactory connectionFactory;
     private RabbitServiceImpl rabbitService;

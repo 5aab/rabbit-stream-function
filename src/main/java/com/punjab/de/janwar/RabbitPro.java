@@ -45,7 +45,7 @@ public class RabbitPro {
     @RequestMapping("/send")
     @ResponseBody
     String send() {
-        for(int i=0;i<100000;i++) {
+        for(int i=0;i<1000000;i++) {
             gateway.generate(getNotificationMessage(i));
         }
         return "Hello Notification sent!";
