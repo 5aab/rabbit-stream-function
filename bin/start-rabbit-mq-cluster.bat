@@ -32,11 +32,13 @@ call rabbitmqctl -n hare join_cluster rabbit@DESKTOP-IO9KB8M
 call rabbitmqctl -n hare start_app
 
 call rabbitmqctl -n micky stop_app
-call rabbitmqctl -n micky join_cluster rabbit@DESKTOP-IO9KB8M
+call rabbitmqctl -n micky join_cluster rabbit@DESKTOP-IO9KB8M set_policy ha-all "\.*" '{"ha-mode":"all"}'
 call rabbitmqctl -n micky start_app
 
 call rabbitmqctl -n minni stop_app
-call rabbitmqctl -n minni join_cluster rabbit@DESKTOP-IO9KB8M
+call rabbitmqctl -n minni join_cluster rabbit@DESKTOP-IO9KB8M set_policy ha-all "\.*" '{"ha-mode":"all"}'
 call rabbitmqctl -n minni start_app
+
+call rabbitmqctl -n rabbit@DESKTOP-IO9KB8M set_policy "ha-failover" "\.*" "{\"ha-mode\":\"all\", \"ha-promote-on-shutdown\":\"always\", \"ha-promote-on-failure\":\"always\", \"queue-master-locator\":\"random\"}"
 
 timeout /t 10000
