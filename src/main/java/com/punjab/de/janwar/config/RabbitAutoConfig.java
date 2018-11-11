@@ -25,7 +25,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 public class RabbitAutoConfig {
 
-    @Qualifier("producerTemplate")
+    //@Qualifier("producerTemplate")
     private RabbitTemplate rabbitTemplate;
     private ConnectionFactory connectionFactory;
     private RabbitServiceImpl rabbitService;

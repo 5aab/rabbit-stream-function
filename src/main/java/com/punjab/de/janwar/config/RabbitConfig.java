@@ -27,7 +27,7 @@ public class RabbitConfig {
         return threadPoolTaskExecutor;
     }
 
-    @Bean
+    //@Bean
     public RabbitTemplate producerTemplate(ThreadPoolTaskExecutor concurrentTaskExecutor) {
         CachingConnectionFactory connectionFactory=new CachingConnectionFactory(cf.getHost(),cf.getPort());
         connectionFactory.setExecutor(concurrentTaskExecutor);
