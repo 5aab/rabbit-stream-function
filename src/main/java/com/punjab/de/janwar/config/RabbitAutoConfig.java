@@ -1,6 +1,7 @@
 package com.punjab.de.janwar.config;
 
 import com.punjab.de.janwar.domain.NotificationMessage;
+import com.punjab.de.janwar.service.RabbitMqAppAdmin;
 import com.punjab.de.janwar.service.RabbitServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.Queue;
@@ -25,23 +26,17 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 public class RabbitAutoConfig {
 
-    //@Qualifier("producerTemplate")
     private RabbitTemplate rabbitTemplate;
     private ConnectionFactory connectionFactory;
     private RabbitServiceImpl rabbitService;
+    private RabbitMqAppAdmin admin;
 
 
-
-    @Bean
-    Queue integrationQueue() {
-        return new Queue("integrationQueue", true);
-    }
 
     @Bean
     public IntegrationFlow inboundFlow() {
         return IntegrationFlows.from(
-                Amqp.inboundAdapter(connectionFactory, "integrationQueue")
-                        .configureContainer(c->c.concurrentConsumers(12)))
+                Amqp.inboundAdapter(connectionFactory, admin.queue("integrationQueue")))
                 .transform(Transformers.fromJson(NotificationMessage.class))
                 .handle(rabbitService, "printMessage")
                 .get();
@@ -49,6 +44,6 @@ public class RabbitAutoConfig {
 
     @Bean
     public IntegrationFlow toOutboundQueueFlow2() {
-        return f -> f.transform(Transformers.toJson()).handle(Amqp.outboundAdapter(rabbitTemplate).routingKey("integrationQueue"));
+        return f -> f.transform(Transformers.toJson()).handle(Amqp.outboundAdapter(rabbitTemplate).routingKey(admin.queue("integrationQueue")));
     }
 }
