@@ -37,21 +37,6 @@
             <artifactId>guava</artifactId>
             <version>24.0-jre</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <dependency>
-            <groupId>de.danielbechler</groupId>
-            <artifactId>java-object-diff</artifactId>
-            <version>0.95</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -63,10 +48,8 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
-            <version>LATEST</version>
+            <version>1.9.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
