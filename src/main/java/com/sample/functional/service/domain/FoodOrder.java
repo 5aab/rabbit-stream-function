@@ -1,4 +1,4 @@
-package com.punjab.de.janwar.stream.service.domain;
+package com.sample.functional.service.domain;
 
 import lombok.*;
 
@@ -13,8 +13,4 @@ public class FoodOrder {
     private String customerAddress;
     private String orderDescription;
 
-    @Override
-    public int hashCode(){
-        return super.hashCode();
-    }
 }

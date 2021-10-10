@@ -3,53 +3,42 @@ server:
 
 spring:
   rabbitmq:
-     addresses: localhost:5672
-     password: guest
-     username: guest
-     listener:
-       simple:
-         concurrency: 4
-         max-concurrency: 8
-         prefetch: 162
-       concurrency: 4
-       max-concurrency: 8
-       prefetch: 162
+    addresses: localhost:5672
+    password: admin
+    username: admin
+    listener:
+      simple:
+        concurrency: 4
+        max-concurrency: 8
+        prefetch: 162
+      concurrency: 4
+      max-concurrency: 8
+      prefetch: 162
   cloud:
     function:
-      stream:
-        processor:
-          name: uppercase
-      scan:
-        packages: com.punjab.de.janwar.stream.service.consumer.functions
-      definition: foodorder
+      routing-expression: headers['spicy']
     stream:
+      rabbit:
+          default:
+            consumer:
+              auto-bind-dlq: true
+              republish-to-dlq: true
+              max-concurrency: 8
+              transacted: true
+            producer:
+              auto-bind-dlq: true
+              republish-to-dlq: true
+              transacted: true
       default:
         contentType: application/json
       bindings:
-        foodorder-in-0:
-          destination: foodOrders
-          group: eaters
         foodordersupplier-out-0:
-          destination: foodOrders
-      rabbit:
-        bindings:
-          foodOrdersChannel:
-            producer:
-              bindingRoutingKey:
-    discovery:
-      enabled: false
-    service-registry:
-      auto-registration:
-        enabled: false
-
-metadata.store.jdbc.table-prefix: rabbit_
-
+          destination: functionRouter-in-0
+        functionRouter-in-0:
+          destination: functionRouter-in-0
+          group: router
+        functionRouter-out-0:
+          destination: functionRouter-out-0
+          group: ouster
 spring.h2.console.enabled: true
 spring.h2.console.path: /h2
-
-eureka:
-  client:
-    enabled: false
-
-security:
-  ignored: /**
