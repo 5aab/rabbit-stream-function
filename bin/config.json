@@ -1,71 +1,64 @@
 {
-  "rabbit_version": "3.8.11",
-  "rabbitmq_version": "3.8.11",
-  "product_name": "RabbitMQ",
-  "product_version": "3.8.11",
-  "users": [{
-    "name": "admin",
-    "password hash": "2LC0J/pSWIc6fab2evsfCkaeLhzdCiSLEDv0+1P7yHlxywF3",
-    "hashing algorithm": "rabbit_password_hashing_sha256",
-    "tags": "administrator"
-  }, {
-    "name": "guest",
-    "password hash": "biBX9LkglzTcWfaZUWZEpHLTm/hjJ/JEUGEsoivHdXShANrP",
-    "hashing algorithm": "rabbit_password_hashing_sha256",
-    "tags": "administrator"
-  }
-  ],
-  "vhosts": [{
-    "name": "5aab"
-  }
-  ],
-  "permissions": [{
-    "user": "admin",
-    "vhost": "5aab",
-    "configure": ".*",
-    "write": ".*",
-    "read": ".*"
-  }, {
-    "user": "guest",
-    "vhost": "5aab",
-    "configure": ".*",
-    "write": ".*",
-    "read": ".*"
-  }
-  ],
-  "topic permissions": [{
-    "user": "guest",
-    "vhost": "5aab",
-    "exchange": ".*",
-    "write": ".*",
-    "read": ".*"
-  }
-  ],
-  "parameters": [],
-  "global parameters": [{
-    "name": "cluster_name",
-    "value": "zone1-node1@D-ISHMAHAJAN"
-  }, {
-    "name": "internal_cluster_id",
-    "value": "rabbitmq-cluster-id-euvq5KMwmip2UoTrYtA-jg"
-  }
-  ],
-  "policies": [{
-    "vhost": "5aab",
-    "name": "ha-failover",
-    "pattern": ".*",
-    "apply-to": "all",
-    "definition": {
-      "ha-mode": "all",
-      "ha-promote-on-failure": "always",
-      "ha-promote-on-shutdown": "always",
-      "ha-sync-mode": "automatic",
-      "queue-master-locator": "random"
-    },
-    "priority": 0
-  }
-  ],
-  "queues": [],
-  "exchanges": [],
-  "bindings": []
+    "rabbit_version": "3.9.7",
+    "rabbitmq_version": "3.9.7",
+    "product_name": "RabbitMQ",
+    "product_version": "3.9.7",
+    "users": [{
+            "name": "admin",
+            "password_hash": "Zu9rVw9BfefjXLP+WAEL3Eyt7XjvkGM7UrYGfZM1o9w0ggAO",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": ["administrator"],
+            "limits": {}
+        }, {
+            "name": "guest",
+            "password_hash": "gk8iEx1iuCV1QKqBfnAd9N3QvA1fBNHkAo26SmWa8CGgLdlD",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": ["administrator"],
+            "limits": {}
+        }
+    ],
+    "vhosts": [{
+            "name": "/"
+        }, {
+            "name": "5aab"
+        }
+    ],
+    "permissions": [{
+            "user": "guest",
+            "vhost": "5aab",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }, {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }, {
+            "user": "guest",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "topic_permissions": [{
+            "user": "admin",
+            "vhost": "/",
+            "exchange": "",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "global_parameters": [{
+            "name": "internal_cluster_id",
+            "value": "rabbitmq-cluster-id-Ox9k3ZSY94bpn8a-yfxZhA"
+        }
+    ],
+    "policies": [],
+    "queues": [],
+    "exchanges": [],
+    "bindings": []
 }

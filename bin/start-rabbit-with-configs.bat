@@ -2,9 +2,9 @@ c:
 
 cd %AppData%
 
-rm -rf RabbitMQ
+rem -rf RabbitMQ
 
-cd C:\FAST\rabbit\3.8.11\sbin
+cd C:\FAST\rabbitmq_server-3.9.7\sbin
 
 path=C:\Windows\System32
 
@@ -19,10 +19,9 @@ call rabbitmq-plugins enable rabbitmq_auth_backend_oauth2
 
 set RABBITMQ_CONFIG_FILE=D:\ws\rabbit-stream-function\bin\zone1-node1
 set RABBITMQ_NODENAME=zone1-node1
-set RABBITMQ_NODE_PORT=5692
 start "zone1-node1" rabbitmq-server
 
-timeout /t 20
+timeout /t 30
 
 set RABBITMQ_CONFIG_FILE=D:\ws\rabbit-stream-function\bin\zone1-node2
 set RABBITMQ_NODENAME=zone1-node2
