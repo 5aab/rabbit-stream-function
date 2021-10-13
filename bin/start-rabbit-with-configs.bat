@@ -14,7 +14,7 @@ path=C:\Windows\System32
 call rabbitmq-plugins enable rabbitmq_management
 call rabbitmq-plugins enable rabbitmq_prometheus
 call rabbitmq-plugins enable rabbitmq_auth_backend_oauth2
-@REM call rabbitmq-plugins enable rabbitmq_stream
+call rabbitmq-plugins enable rabbitmq_stream
 
 @REM call rabbitmq-plugins enable prometheus_rabbitmq_exporter
 @REM call rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
