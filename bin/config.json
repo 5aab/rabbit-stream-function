@@ -31,7 +31,7 @@
             "read": ".*"
         }, {
             "user": "admin",
-            "vhost": "/",
+            "vhost": "5aab",
             "configure": ".*",
             "write": ".*",
             "read": ".*"
@@ -45,7 +45,7 @@
     ],
     "topic_permissions": [{
             "user": "admin",
-            "vhost": "/",
+            "vhost": "5aab",
             "exchange": "",
             "write": ".*",
             "read": ".*"

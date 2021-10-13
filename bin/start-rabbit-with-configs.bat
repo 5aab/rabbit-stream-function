@@ -2,7 +2,9 @@ c:
 
 cd %AppData%
 
-rem -rf RabbitMQ
+@REM rm -rf RabbitMQ
+rmdir /S /Q RabbitMQ
+
 
 cd C:\FAST\rabbitmq_server-3.9.7\sbin
 
@@ -12,6 +14,7 @@ path=C:\Windows\System32
 call rabbitmq-plugins enable rabbitmq_management
 call rabbitmq-plugins enable rabbitmq_prometheus
 call rabbitmq-plugins enable rabbitmq_auth_backend_oauth2
+@REM call rabbitmq-plugins enable rabbitmq_stream
 
 @REM call rabbitmq-plugins enable prometheus_rabbitmq_exporter
 @REM call rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
@@ -21,7 +24,7 @@ set RABBITMQ_CONFIG_FILE=D:\ws\rabbit-stream-function\bin\zone1-node1
 set RABBITMQ_NODENAME=zone1-node1
 start "zone1-node1" rabbitmq-server
 
-timeout /t 30
+timeout /t 60
 
 set RABBITMQ_CONFIG_FILE=D:\ws\rabbit-stream-function\bin\zone1-node2
 set RABBITMQ_NODENAME=zone1-node2
