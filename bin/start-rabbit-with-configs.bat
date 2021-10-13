@@ -43,14 +43,8 @@ set RABBITMQ_NODENAME=zone2-node2
 set RABBITMQ_NODE_PORT=5695
 start "zone2-node2" rabbitmq-server
 
-timeout /t 20
+timeout /t 30
 
+call rabbitmqctl -n zone1-node1 delete_vhost /
 
-set RABBITMQ_CONFIG FILE=I: \rabbit-mg\zabbitmq-zonel-node2 set RABBITMQ NODENAME=zonel-node2 set RABBITMQ_NODE PORT=5673 start "zone1-node2" rabbitmq-server
-timeout /t 20
-set RABBITMQ_CONFIG FILE=I: \rabbit-mg\zabbitmq-zone2-nodel set RABBITMQ NODENAME=zone2-nodel set RABBITMQ_NODE_PORT=5674 start "zone2-node1" rabbitmq-server
-timeout /t 10
-set RABBITMQ_CONFIG FILE=I: \rabbit-mg\zabbitmq-zone2-node2 set RABBITMQ NODENAME=zone2-node2 set RABBITMQ NODE PORT=5675 start "zone2-node2" rabbitmq-server
-timeout lt 35
-call rabbitmqctl -n zonel-node1 delete_vhost /
 timeout /t 10000

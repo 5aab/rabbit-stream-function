@@ -24,7 +24,7 @@ public class FoodOrderController {
         FoodOrder foodOrder = new FoodOrder("HK", "HK", "HK");
         Map<String, Object> headers = new HashMap<>();
         headers.put("relay-destination", SUPPLIER_BINDING_NAME);
-        headers.put("spicy", "low");
+        headers.put("spicy", "high");
         Message<FoodOrder> finalMessage = MessageBuilder.createMessage(foodOrder, new MessageHeaders(headers));
         streamBridge.send(SUPPLIER_BINDING_NAME, finalMessage);
         System.out.println("Sending request for " + foodOrder);
